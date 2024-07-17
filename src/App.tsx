@@ -1,5 +1,4 @@
 import Collapsible from "./Collapsible.tsx";
-import { createSignal } from "solid-js";
 
 function App() {
   return (
