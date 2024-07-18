@@ -17,6 +17,7 @@ type CollapsibleProps<T extends ElementType> = {
   as?: T;
   closedStyles?: "string";
   openStyles?: "string";
+  buttonStyles?: "string";
 };
 
 function Collapsible<T extends ElementType = "div">(
@@ -29,6 +30,7 @@ function Collapsible<T extends ElementType = "div">(
     value,
     closedStyles,
     openStyles,
+    buttonStyles,
   } = props;
   const [isOpen, setIsOpen] = createSignal(value);
   const [local, others] = splitProps(props, ["as"]);
@@ -41,7 +43,10 @@ function Collapsible<T extends ElementType = "div">(
   return (
     <>
       <button
-        class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-blue-700 dark:border-gray-700"
+        class={clsx(
+          "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-blue-700 dark:border-gray-700",
+          buttonStyles || "",
+        )}
         aria-expanded={isOpen()}
         onClick={toggleContent}
       >
